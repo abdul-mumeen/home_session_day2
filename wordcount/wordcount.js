@@ -1,69 +1,9 @@
 'use strict';
 
-function isWhiteSpace(ch)
-{
-  if (ch === " " || ch === "\t" || ch == "\n")
-  {
-    return true;
-  }
-  else
-  {
-    return false;
-  }
-}
-
-function isPucntuation(ch)
-{
-  if ((ch === ",") || (ch === ".") || (ch === "'") || (ch === "!") || (ch === "?"))
-  {
-    return true;
-  }
-  else
-  {
-    return false;
-  }
-}
-
-function SplitSentence(sentence)
-{
-  var str = "";
-  var inWord = false;
-  var wordArray = [];
-  sentence += " ";
-  for (var i = 0; i < sentence.length; i++)
-  {
-    var ch = sentence[i];
-    if (!inWord && !(isPucntuation(ch) || isWhiteSpace(ch)))
-    {
-      inWord = true;
-      str += ch;
-    }
-    else if (inWord && !(isPucntuation(ch) || isWhiteSpace(ch)))
-    {
-      str += ch;
-    }
-    else
-    {
-      if (inWord)
-      {
-        if (str !== "")
-        {
-          wordArray.push(str);
-          str = "";
-          inWord = false;
-        }
-      }
-    }
-  }
-  return wordArray;
-}
-
-
 module.exports = {
-
-  function CheckFrequency(wArray)
+  words: function(wordd)
   {
-    var words = wArray;
+    var wArray = SplitSentence(wordd);
     var result = {};
     for (var i = 0; i < wArray.length; i++)
     {
@@ -84,5 +24,54 @@ module.exports = {
     }
     return result;
   }
+};
+
+function isWhiteSpace(ch)
+{
+  if (ch === " " || ch === "\t" || ch == "\n")
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
 }
+
+function SplitSentence(sentence)
+{
+  var str = "";
+  var inWord = false;
+  var wordArray = [];
+  sentence += " ";
+  for (var i = 0; i < sentence.length; i++)
+  {
+    var ch = sentence[i];
+    if (!inWord && !isWhiteSpace(ch))
+    {
+      inWord = true;
+      str += ch;
+    }
+    else if (inWord && !isWhiteSpace(ch))
+    {
+      str += ch;
+    }
+    else
+    {
+      if (inWord)
+      {
+        if (str !== "")
+        {
+          wordArray.push(str);
+          str = "";
+          inWord = false;
+        }
+      }
+    }
+  }
+  return wordArray;
+}
+
+
+
 
