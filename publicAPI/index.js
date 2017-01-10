@@ -6,7 +6,7 @@ var chalk = require("chalk");
 
 function BuildKey(source,sortby)
 {
-	return "https://newsapi.org/v1/articles?source=" + source + "&apiKey=a15864e776014990966b7593cb63d7e0";
+	return "https://newsapi.org/v1/articles?source=" + source + "&apiKey=a15864e776014990966b7593cb63d7e0&sortby" + sortby;
 }
 function Search(callback) {
   var questions = [
@@ -44,7 +44,7 @@ function Search(callback) {
   inquirer.prompt(questions).then(callback);
 }
 Search(function(){
-	superagent.get(BuildKey(arguments[0].sources,arguments["sort"])).end(function(err, res){
+	superagent.get(BuildKey(arguments[0].sources,arguments[0].sort)).end(function(err, res){
 		if(err)
 		{
 			console.log(err);
