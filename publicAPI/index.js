@@ -18,7 +18,7 @@ function Search(callback) {
         if (value.length) {
           return true;
         } else {
-          return 'Please Enter your source: ';
+          return 'Please Enter your source: Examples are techcrunch and bbc-news';
         }
       }
     },
